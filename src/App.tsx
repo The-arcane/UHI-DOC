@@ -15,7 +15,7 @@ import About from './components/About';
 import DoctorDashboard from './components/DoctorDashboard';
 import SignIn from './components/SignIn';
 import AdminDashboard from './components/admin/AdminDashboard';
-import VideoCall from './components/VideoCall'; // ✅ Import VideoCall component
+import VideoCall from './components/VideoCall';
 import CartIcon from './components/shared/CartIcon';
 import EmergencyButton from './components/shared/EmergencyButton';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -69,16 +69,6 @@ function App() {
                     About
                   </Link>
                 </li>
-                <li>
-                  <a
-                    href="http://localhost:5174/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
-                  >
-                    HealthBot
-                  </a>
-                </li>
                 {user && (
                   <>
                     <li>
@@ -91,7 +81,7 @@ function App() {
                     </li>
                     <li>
                       <a
-                        href="http://localhost:5177/"
+                        href="https://uhi-docbot.netlify.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-gray-700 hover:text-blue-600 transition-colors"
@@ -148,17 +138,28 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route
               path="/doctor-dashboard"
-              element={<PrivateRoute><DoctorDashboard /></PrivateRoute>}
+              element={
+                <PrivateRoute>
+                  <DoctorDashboard />
+                </PrivateRoute>
+              }
             />
             <Route path="/signin" element={<SignIn />} />
             <Route
               path="/admin/*"
-              element={<AdminRoute><AdminDashboard /></AdminRoute>}
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
             />
-            {/* ✅ Video Call Route */}
             <Route
               path="/videocall/:id"
-              element={<PrivateRoute><VideoCall /></PrivateRoute>}
+              element={
+                <PrivateRoute>
+                  <VideoCall />
+                </PrivateRoute>
+              }
             />
           </Routes>
         </main>
